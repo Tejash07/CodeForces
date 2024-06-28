@@ -1,0 +1,35 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    // Write C++ code here
+    int t;
+    cin>>t;
+    while(t--){
+        int n,k;
+        cin>>n>>k;
+        vector<int>arr(n);
+        for(int i=0;i<n;i++){
+            cin>>arr[i];
+            
+        }
+        int ans=k-1;
+        int e_cnt=0;//to count the number of even numbers 
+        for(int i=0;i<n;i++){
+            if(arr[i]%2==0) e_cnt++;
+            if(arr[i]%k==0) ans=0;
+            else {
+                ans=min(ans,k-arr[i]%k);
+            }
+            
+        }
+        if(k!=4) cout<<ans<<endl;//if it is not four then there is no problem
+        else{
+            if(e_cnt>=2) cout<<0<<endl;//if two even numbers then it will be divisible by 4
+            else if(e_cnt==1) cout<<min(1,ans)<<endl;//this is for this test case {1,11} for 1 it will be 3 and for 11 it will be 1
+            else cout<<min(2,ans)<<endl;//same for this also {3,13}
+        }
+    }
+
+    return 0;
+}
